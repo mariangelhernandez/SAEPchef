@@ -1,87 +1,322 @@
+/* Reset global e fonte obrigatoriamente Poppins */
 * {
-    --branco: #ffffff;
-    --preto: #000000;
-    --cinza: #333333;
-    --roxo: #483dad;
-    --vermelho: #ff0000;
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-.sidebar {
-    background-color: var(--cinza);
-    color: var(--branco);
-    width: 300px;
-    min-height: 100vh;
-
+body {
+    background-color: #FFFFFF;
+    color: #333333;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px;
-
-    padding: 25px;
-
-}
-
-.principal{
-    background-color: var(--branco);
     min-height: 100vh;
-    width: calc(100vw - 300px);
-
 }
 
-.app {
+/* 1. Cabeçalho */
+.app-header {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-
-    min-height: 100vh;
-
-    background-color: aquamarine;
-
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    border-bottom: 1px solid #E0E0E0;
 }
 
-#logo {
-    width: 150px;
+/* 1.1 Seção usuário */
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
-.contadores {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+.user-name {
+    font-weight: 500;
 }
 
-#contador-atividades, #contador-co2 {
-    text-align: center;
-    font-size: 32px;
-}
-
-#painel-atividades {
-    height: 50vh;
-}
-
-#btLogin {
-    background-color: var(--cinza);
-    color: var(--branco);
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.seletor-veiculos{
-    background-color: var(--cinza);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.seletor-veiculos button{
-    background-color: var(--cinza);
-    color: var(--branco);
+.btn-profile {
+    background-color: #1B3C29;
+    color: #FFFFFF;
     border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* 1.2 Seção empresa */
+.company-section {
+    flex: 1;
+    text-align: center;
+}
+
+.company-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1B3C29;
+}
+
+/* 1.3 Botão de login */
+.btn-login {
+    background-color: #1B3C29;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-login:hover {
+    opacity: 0.9;
+}
+
+/* 2. Corpo da aplicação */
+.app-body {
+    flex: 1;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* 2.1 Campo de busca */
+.search-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+/* 2.2 Mural de receitas (Três colunas por linha) */
+.recipes-wall {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.recipe-card {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.recipe-image-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+}
+
+.recipe-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Efeito hover na imagem com Tooltip */
+.recipe-tooltip {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(27, 60, 41, 0.9);
+    color: #FFFFFF;
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.recipe-image-container:hover .recipe-tooltip {
+    opacity: 1;
+}
+
+.recipe-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+.recipe-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.recipe-favorites {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.star-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.favorites-count {
+    font-weight: 600;
+}
+
+/* Modal / Popup de autenticação */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-container {
+    background-color: #FFFFFF;
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+    color: #1B3C29;
+}
+
+.close-modal {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+    display: none;
+    margin-top: 4px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    background: transparent;
+    border: 1px solid #1B3C29;
+    color: #1B3C29;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-submit {
+    background-color: #1B3C29;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 3. Rodapé */
+.app-footer {
+    background-color: #1B3C29;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    margin-top: auto;
+}
+
+.footer-brand {
+    font-weight: 700;
+}
+
+.footer-center {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.copyright {
+    font-size: 0.85rem;
 }

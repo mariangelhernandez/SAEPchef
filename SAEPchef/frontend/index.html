@@ -1,53 +1,146 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAEPChef</title>
     <link rel="stylesheet" href="style.css">
-    <title>EcoMove</title>
+    <!-- Fonte Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="app">
-        <div class="sidebar">
-            <img id="logo" src="img/logo.png" alt="">
-            <h1>EcoMove</h1>
-            <div class="contadores">
-                <div class="contador-esquerda">
-                    <div id="contador-atividades">
-                        5
-                    </div>
-                    <label for="">QTD atividades</label>
-                </div>
-                <div class="contador-direita">
-                    <div id="contador-co2">
-                        1.62
-                    </div>
-                    <label for="">Qtd CO2 (kg)</label>
 
-                </div>
-            </div>
-            <div class="atividades">📊 Atividades</div>
+    <!-- 1. Cabeçalho da aplicação -->
+    <header class="app-header">
+        <!-- 1.1 Seção usuário -->
+        <div class="user-section">
+            <img src="./anexos_prova/imagens_usuarios/chef1.jpg" alt="Foto de Perfil" class="user-avatar">
+            <span class="user-name">@SAEPChef</span>
+            <button class="btn-profile" disabled>Ver Perfil</button>
         </div>
-        <div class="principal">
-            <button id="btLogin">Login</button>
-            <div class="seletor-veiculos">
-                <button>Bicicleta</button>
-                <button>Caminhada</button>
-                <button>Transporte Público</button>
+
+        <!-- 1.2 Seção empresa -->
+        <div class="company-section">
+            <h1 class="company-name">SAEPChef</h1>
+        </div>
+
+        <!-- 1.3 Botão de login -->
+        <div class="login-section">
+            <button class="btn-login" id="openLoginModal">Login</button>
+        </div>
+    </header>
+
+    <!-- 2. Corpo da aplicação -->
+    <main class="app-body">
+        <!-- 2.1 Campo de busca -->
+        <section class="search-section">
+            <div class="search-box">
+                <input type="text" placeholder="Digite o nome do chef... ex: @chef1" class="search-input">
+                <img src="./anexos_prova/icones/lupa.svg" alt="Buscar" class="search-icon">
             </div>
-            <div id="painel-atividades">
-                <div class="card-atividade">
-                    ativ temporaria
+        </section>
+
+        <!-- 2.2 Mural de receitas (Três colunas por linha) -->
+        <section class="recipes-wall">
+            <!-- Card de Receita Exemplo 1 -->
+            <article class="recipe-card">
+                <div class="recipe-image-container">
+                    <img src="./anexos_prova/receitas/receita1.jpg" alt="Receita 1" class="recipe-image">
+                    <!-- Tooltip no Hover -->
+                    <div class="recipe-tooltip">
+                        <p>Receita publicada por: @chef1</p>
+                        <p>Origem: Itália</p>
+                    </div>
                 </div>
-                
+                <div class="recipe-info">
+                    <h3 class="recipe-title">Receita 1</h3>
+                    <div class="recipe-favorites">
+                        <img src="./anexos_prova/icones/estrela.svg" alt="Favoritos" class="star-icon">
+                        <span class="favorites-count">12</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card de Receita Exemplo 2 -->
+            <article class="recipe-card">
+                <div class="recipe-image-container">
+                    <img src="./anexos_prova/receitas/receita2.jpg" alt="Receita 2" class="recipe-image">
+                    <div class="recipe-tooltip">
+                        <p>Receita publicada por: @chef2</p>
+                        <p>Origem: França</p>
+                    </div>
+                </div>
+                <div class="recipe-info">
+                    <h3 class="recipe-title">Receita 2</h3>
+                    <div class="recipe-favorites">
+                        <img src="./anexos_prova/icones/estrela.svg" alt="Favoritos" class="star-icon">
+                        <span class="favorites-count">8</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card de Receita Exemplo 3 -->
+            <article class="recipe-card">
+                <div class="recipe-image-container">
+                    <img src="./anexos_prova/receitas/receita3.jpg" alt="Receita 3" class="recipe-image">
+                    <div class="recipe-tooltip">
+                        <p>Receita publicada por: @chef3</p>
+                        <p>Origem: Brasil</p>
+                    </div>
+                </div>
+                <div class="recipe-info">
+                    <h3 class="recipe-title">Receita 3</h3>
+                    <div class="recipe-favorites">
+                        <img src="./anexos_prova/icones/estrela.svg" alt="Favoritos" class="star-icon">
+                        <span class="favorites-count">25</span>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Modal/Popup de Autenticação -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>Login</h2>
+                <button class="close-modal" id="closeLoginModal">&times;</button>
             </div>
-            <div id="contole-paginacao">
-                <button>Anterior</button>
-                <button>1</button>
-                <button>Próximo</button>
-            </div>
+            <form class="login-form">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="Digite seu e-mail" required>
+                    <span class="error-message">E-mail inválido ou vazio.</span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" placeholder="Digite sua senha" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" id="cancelLogin">Cancelar</button>
+                    <button type="submit" class="btn-submit">Entrar</button>
+                </div>
+            </form>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <!-- 3. Rodapé da aplicação -->
+    <footer class="app-footer">
+        <div class="footer-left">
+            <span class="footer-brand">SAEPChef</span>
+        </div>
+        <div class="footer-center">
+            <img src="./anexos_prova/icones/instagram.svg" alt="Instagram" class="social-icon">
+            <img src="./anexos_prova/icones/tiktok.svg" alt="TikTok" class="social-icon">
+            <img src="./anexos_prova/icones/linkedin.svg" alt="LinkedIn" class="social-icon">
+            <img src="./anexos_prova/icones/youtube.svg" alt="YouTube" class="social-icon">
+        </div>
+        <div class="footer-right">
+            <span class="copyright">Copyright 2026-2027</span>
+        </div>
+    </footer>
+
 </body>
 </html>
