@@ -1,19 +1,26 @@
 {
-  "dependencies": {
-    "express": "^5.2.1",
-    "dotenv": "^17.4.2",
-    "express-session": "^1.19.0",
-    "pg": "^8.22.0"
-  },
-  "name": "backend",
+  "name": "saepchef",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "node --watch src/server/server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariangelhernandez/SAEPchef.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/mariangelhernandez/SAEPchef/issues"
+  },
+  "homepage": "https://github.com/mariangelhernandez/SAEPchef#readme",
+  "dependencies": {
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "pg": "^8.23.0"
+  }
 }

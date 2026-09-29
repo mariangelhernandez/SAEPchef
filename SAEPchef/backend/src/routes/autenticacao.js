@@ -1,5 +1,5 @@
-import express from 'express';
-import { pool } from '../db.js';;
+import {Router} from 'express';
+import { pool } from '../config/db.js';;
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get('/sessao', async (req, res) => {
     }
     const { rows } = await pool.query(
         `SELECT nome_usuario, imagem_usuario, tipo FROM usuario WHERE nome_usuario = $1`, 
-        ['SAEPChef']
+        ['saepchef']
     );
     res.json({ logado: false, usuario: rows[0] });
 });
