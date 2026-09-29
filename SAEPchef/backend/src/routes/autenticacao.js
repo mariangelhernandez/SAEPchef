@@ -26,7 +26,7 @@ router.post('/login', async (req, res) => {
     if (rows.length === 0) {
         return res.status(401).json({ erro: 'Usuário não encontrado ou senha incorreta' });
     }
-    req.session.usuario = rows[0]; // guarda na sessão
+    req.session.usuario = rows[0];
     res.json({ usuario: rows[0] });
 });
 
